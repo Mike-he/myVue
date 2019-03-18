@@ -4,8 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import 'weixin-js-sdk'
-import './assets/styles/reset.css'
-import './assets/styles/border.css'
+import 'normalize.css'
 
 Vue.config.productionTip = false
 
