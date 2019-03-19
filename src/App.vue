@@ -18,7 +18,7 @@ export default {
         let msg = res.data;
 
         this.$wx.config({
-          debug: true, //生产环境需要关闭debug模式
+          debug: false, //生产环境需要关闭debug模式
 
           appId: msg.appId, //appId通过微信服务号后台查看
 

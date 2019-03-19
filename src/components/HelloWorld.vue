@@ -1,6 +1,10 @@
 <template>
   <div class="hello">
-		<div v-text="msg"></div>
+    <div>
+      <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIyOTEwNDU2NA==#wechat_redirect">
+        <button>关注</button>
+      </a>
+    </div>
   </div>
 </template>
 
