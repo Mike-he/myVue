@@ -3,8 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import axios from 'axios'
+import wx from 'weixin-js-sdk';
 import 'normalize.css'
 
+Vue.prototype.$http = axios;
+Vue.prototype.$wx = wx;
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
