@@ -6,6 +6,7 @@
 
 <script>
 import axios from "axios";
+import wx from 'weixin-js-sdk';
 
 export default {
   name: "App",
