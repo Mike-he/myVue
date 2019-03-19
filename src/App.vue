@@ -17,7 +17,7 @@ export default {
         url: encodeURIComponent(window.location.href.split("#")[0])
       })
       .then(res => {
-        let msg = res.data.data;
+        let msg = res.data;
 
         wx.config({
           debug: true, //生产环境需要关闭debug模式
