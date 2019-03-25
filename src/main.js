@@ -6,9 +6,35 @@ import router from './router'
 import axios from 'axios'
 import wx from 'weixin-js-sdk';
 import 'normalize.css'
+import ElementUI from 'element-ui';
+import JsonExcel from 'vue-json-excel'
+import 'element-ui/lib/theme-chalk/index.css';
+import Box from '@/components/basic-components/Box';
+import VueCookies from 'vue-cookies'
 
-Vue.prototype.$http = axios;
+Vue.use(VueCookies);
+Vue.use(ElementUI);
+
+Vue.component('downloadExcel', JsonExcel);
+Vue.component('box', Box);
+
+Vue.prototype.$message = ElementUI.Message;
+
+// 添加一个请求拦截器
+axios.interceptors.request.use(function (config) {
+  return config;
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error);
+});
+
+axios.defaults.withCredentials=true;
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+
+Vue.prototype.$axios = axios;
 Vue.prototype.$wx = wx;
+
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */

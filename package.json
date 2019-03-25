@@ -11,8 +11,11 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "element-ui": "^2.6.1",
     "normalize.css": "^8.0.1",
     "vue": "^2.5.2",
+    "vue-cookies": "^1.5.13",
+    "vue-json-excel": "^0.2.98",
     "vue-router": "^3.0.1",
     "weixin-js-sdk": "^1.4.0-test"
   },
