@@ -3,9 +3,8 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const state = {
-	// API_URL: 'http://47.100.236.162:8080',
+	API_URL: 'http://47.100.236.162:8080',
 	// API_URL: 'http://lumen.local',
-	API_URL: 'http://127.0.0.1:8080',
 	JSESSIONID: '',
 };
 
