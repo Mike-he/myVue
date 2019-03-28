@@ -14,13 +14,8 @@
 	.box {
 		margin: 1rem;
 		padding: 1rem;
-		border: 1px solid #eee;
+		width: auto;
+		background-color: #fff;
 		border-radius: .2rem;
-	}
-	.el-table {
-		border: 1px solid #eee;
-	}
-	.el-table tr, .el-table th{
-		background-color: #eee !important;
 	}
 </style>

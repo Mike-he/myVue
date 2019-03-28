@@ -4,13 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
-import wx from 'weixin-js-sdk';
 import 'normalize.css'
 import ElementUI from 'element-ui';
 import JsonExcel from 'vue-json-excel'
 import 'element-ui/lib/theme-chalk/index.css';
+import '@/assets/styles/main.css';
 import Box from '@/components/basic-components/Box';
 import VueCookies from 'vue-cookies'
+import store from './store'
 
 Vue.use(VueCookies);
 Vue.use(ElementUI);
@@ -28,12 +29,10 @@ axios.interceptors.request.use(function (config) {
   return Promise.reject(error);
 });
 
-axios.defaults.withCredentials=true;
+axios.defaults.withCredentials=false;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
 Vue.prototype.$axios = axios;
-Vue.prototype.$wx = wx;
 
 Vue.config.productionTip = false;
 
@@ -41,6 +40,7 @@ Vue.config.productionTip = false;
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

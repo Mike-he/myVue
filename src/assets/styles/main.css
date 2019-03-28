@@ -1,0 +1,8 @@
+.box-row {
+    display: table-row;
+}
+
+.box-cell {
+    display: table-cell;
+    padding: .4rem;
+}
