@@ -30,7 +30,7 @@ axios.interceptors.request.use(function (config) {
 });
 
 axios.defaults.withCredentials=false;
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 Vue.prototype.$axios = axios;
 

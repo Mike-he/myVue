@@ -84,6 +84,7 @@
 			<div class="button-box">
 				<download-excel
 						:data="tableData"
+						:fields = "tableFields"
 						class="export-button"
 				>
 					<el-button type="primary" plain>导出Excel</el-button>
@@ -97,32 +98,28 @@
 					stripe
 					style="width: 99%; min-height: 100px; color: #000 !important;">
 				<el-table-column
-						prop="trade_id"
-						label="订单编号">
-				</el-table-column>
-				<el-table-column
-						prop="name"
-						label="礼品分类">
+						prop="gift_name"
+						label="礼品名称">
 				</el-table-column>
 				<el-table-column
 						prop="receiver_name"
-						label="收件人姓名">
+						label="收件人">
 				</el-table-column>
 				<el-table-column
-						prop="receiver_name"
-						label="收件人手机号">
+						prop="receiver_mobile"
+						label="手机号">
 				</el-table-column>
 				<el-table-column
 						prop="create_time"
 						label="订单时间">
 				</el-table-column>
 				<el-table-column
-						prop="trade_point"
-						label="订单英雄币">
-				</el-table-column>
-				<el-table-column
 						prop="trade_num"
 						label="订单件数">
+				</el-table-column>
+				<el-table-column
+						prop="receiver_address"
+						label="收货地址">
 				</el-table-column>
 				<el-table-column
 						prop="status"
@@ -142,7 +139,7 @@
 					trade_id: '',
 					receiver_mobile: '',
 					receiver_name: '',
-					date: '',
+					date: [new Date(new Date().getTime() - 7 * 24 * 3600 * 1000), new Date()],
 					status: ''
 				},
 				statusList: [
@@ -163,18 +160,30 @@
 						label: '已取消'
 					}
 				],
-				tableData: [
-					{
-						'trade_id': ''
-					},
-				],
+				tableData: [],
+				tableFields: {
+					'礼品名称': 'gift_name',
+					'收件人': 'receiver_name',
+					'手机号': 'receiver_mobile',
+					'订单时间': 'create_time',
+					'礼品数量': 'trade_num',
+					'收获地址': 'receiver_address',
+					'订单状态': 'status',
+				},
 				loading: false,
 				buttonLoading: false,
 			}
 		},
-		watch: {
-			'form.date'(val) {
-				console.log(val[0]);
+		filters: {
+			statusFilter: (val) => {
+				switch (val) {
+					case 1:
+						return '已发货';
+					case 0:
+						return '未发货';
+					case -1:
+						return '已取消';
+				}
 			}
 		},
 		methods: {
@@ -186,7 +195,10 @@
 
 				this.$axios
 						.post(
-								this.$store.state.API_URL + "/orders/" + "?JSESSIONID=" + this.JSESSIONID,
+								this.$store.state.API_URL + "/orders/"
+								+ "?JSESSIONID=" + this.JSESSIONID
+								+ "&pageLimit=10000"
+								,
 								{
 									trade_id: this.form.trade_id,
 									receiver_mobile: this.form.receiver_mobile,
@@ -197,19 +209,52 @@
 								}
 						)
 						.then((res) => {
-							if (res) {
-								this.tableData = res.data.Records;
+							if (!res.data.code) {
+								this.transferData(res.data.Records);
+								// this.tableData = res.data.Records;
 								this.loading = false;
+							} else {
+								this.$message.warning('JSESSIONID已失效请重新输入哦！');
+								setTimeout(() => {
+									this.$router.push('/');
+								}, 1000);
 							}
 						})
 						.catch((err) => {
-							// this.$cookies.remove('username');
-							// this.$cookies.remove('password');
 							this.$message.warning('JSESSIONID已失效请重新输入哦！');
 							setTimeout(() => {
 								this.$router.push('/');
 							}, 1000);
 						});
+			},
+			transferData(inputData) {
+				this.tableData = [];
+				inputData.map((row) => {
+					this.tableData.push({
+						gift_name: row.gift_name,
+						receiver_name: row.receiver_name,
+						receiver_mobile: row.receiver_mobile.replace(/<[^>]+>/g,""),
+						create_time: this.dataTransform(row.create_time),
+						trade_num: row.trade_num,
+						receiver_address: row.receiver_address,
+						status: this.statusFilter(row.status),
+					});
+				});
+			},
+			dataTransform(val) {
+				val = val.replace(/-/g,"/");
+				val = val.replace(/(\.\d+)?/g,"");
+				return val.split(' ')[0];
+			},
+			statusFilter(val) {
+				switch (val) {
+					case 1:
+						return '已发货';
+					case 0:
+						return '未发货';
+					case -1:
+						return '已取消';
+				}
 			}
 		},
 		computed: {
@@ -218,7 +263,7 @@
 			}
 		},
 		mounted() {
-			// this.getList();
+			this.getList();
 		}
 	}
 </script>

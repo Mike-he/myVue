@@ -2,13 +2,13 @@
 	<div class="login-box">
 		<div class="logo">
 			<img :src="require('@img/cup.png')" alt="">
-			<!--<div class="logo-title">你的可乐</div>-->
+			<div class="logo-title">你的可乐</div>
 		</div>
 		<div class="login-content">
 			<div class="box">
 				<div class="box-row">
 					<div class="box-cell box-cell-title">
-						<span class="j-label">你的用户名</span>
+						<span class="j-label">JsessionID</span>
 					</div>
 					<div class="box-cell">
 						<el-input
@@ -16,52 +16,17 @@
 								placeholder=""
 								autofocus=true
 								spellcheck=false
-								:disabled="usernameDisabled"
-								v-model="username"
-						>
-						</el-input>
-					</div>
-				</div>
-				<div class="box-row">
-					<div class="box-cell box-cell-title">
-						<span class="j-label">你的密码</span>
-					</div>
-					<div class="box-cell">
-						<el-input
-								class="j-input"
-								placeholder=""
-								autofocus=true
-								spellcheck=false
-								show-password
-								:disabled="passwordDisabled"
-								v-model="password"
 								@keyup.enter.native="submit"
+								v-model="JSESSIONID"
 						>
 						</el-input>
-					</div>
-				</div>
-				<div class="box-row">
-					<div class="box-cell"></div>
-					<div class="box-cell">
-						<el-checkbox
-								label="放心，会牢牢记着你"
-								name="type"
-								disabled
-								v-model="remember"
-						></el-checkbox>
-					</div>
-				</div>
-				<div class="box-row">
-					<div class="box-cell"></div>
-					<div class="box-cell">
 						<el-button
-								type="primary"
+								type="text"
 								class="login-button"
 								:loading="buttonLoading"
-								@click="submit"
-								:disabled="buttonDisabled"
+								v-show="buttonLoading"
 						>
-							登录
+							验证中...
 						</el-button>
 					</div>
 				</div>
@@ -75,37 +40,18 @@
 		name: 'Login',
 		data() {
 			return {
-				username: this.$cookies.get('username') ? this.$cookies.get('username') : '',
-				password: this.$cookies.get('password') ? this.$cookies.get('password') : '',
-				usernameDisabled: false,
-				passwordDisabled: false,
-				remember: true,
-				buttonDisabled: false,
+				JSESSIONID: '',
 				buttonLoading: false,
 			}
 		},
 		watch: {
-			username(val) {
-				if (val !== '' && this.password !== '') {
-					this.buttonDisabled = false;
-				} else {
-					this.buttonDisabled = true;
-				}
+			JSESSIONID(val) {
+				this.submit();
 			},
-			password(val) {
-				if (val !== '' && this.username !== '') {
-					this.buttonDisabled = false;
-				} else {
-					this.buttonDisabled = true;
-				}
-			}
 		},
 		methods: {
 			storeJSESSIONID(val) {
 				this.$store.dispatch('setJSESSIONID', val);
-
-				this.$cookies.set('username', this.username);
-				this.$cookies.set('password', this.password);
 
 				setTimeout(() => {
 					this.$router.push('/order');
@@ -115,38 +61,24 @@
 				this.buttonLoading = true;
 				this.$axios
 						.post(
-								this.$store.state.API_URL,
-								{
-									username: this.username,
-									password: this.password,
-								}
+								this.$store.state.API_URL + "/orders/" + "?JSESSIONID=" + this.JSESSIONID,
 						)
 						.then((res) => {
 							if (!res.data.code) {
-								this.storeJSESSIONID(res.data.data.JSESSIONID);
-								this.$message.success('登录成功！');
+								this.storeJSESSIONID(this.JSESSIONID);
+								this.$message.success('验证成功！');
 							} else {
 								this.$message.warning(res.data.msg);
 							}
 						})
 						.catch((err) => {
-							this.$message.warning('未知错误!');
+							this.$message.warning('验证错误!');
 						})
 						.finally(() => {
 							this.buttonLoading = false;
 						})
 			}
 		},
-		mounted() {
-			if (this.$cookies.get('username') !== null) {
-				this.usernameDisabled = true;
-				this.passwordDisabled = true;
-				this.$message.success('开启自动登录中...');
-				setTimeout(() => {
-					this.submit();
-				}, 1000);
-			}
-		}
 	}
 </script>
 
@@ -202,7 +134,7 @@
 		padding: 2rem;
 		background-color: #fff;
 		height: 100%;
-		width: 50rem;
+		width: 30%;
 		transition: all .3s;
 	}
 
@@ -231,10 +163,10 @@
 	}
 
 	.j-input {
-		width: 100%;
+		width: 28rem;
 	}
 
 	.login-button {
-		width: 15rem;
+		width: 7rem;
 	}
 </style>
