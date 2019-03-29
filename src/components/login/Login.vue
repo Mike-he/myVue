@@ -134,7 +134,7 @@
 		padding: 2rem;
 		background-color: #fff;
 		height: 100%;
-		width: 30%;
+		width: 50rem;
 		transition: all .3s;
 	}
 
