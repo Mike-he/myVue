@@ -1,5 +1,12 @@
 <template>
 	<div>
+		<div class="logo">
+			<div class="animate">
+				<img :src="require('@img/logo.png')" alt="">
+				<span class="logo-title">可口可乐在上海 新品英雄会礼品兑换</span>
+			</div>
+		</div>
+
 		<div class="breadcrumb">
 			<el-breadcrumb separator-class="el-icon-arrow-right">
 				<el-breadcrumb-item>首页</el-breadcrumb-item>
@@ -83,11 +90,12 @@
 		<box>
 			<div class="button-box">
 				<download-excel
-						:data="tableData"
-						:fields = "tableFields"
+						:data="exportData"
+						:fields="tableFields"
+						name="YourCola.xls"
 						class="export-button"
 				>
-					<el-button type="primary" plain>导出Excel</el-button>
+					<el-button type="success">导出Excel</el-button>
 				</download-excel>
 			</div>
 			<el-table
@@ -96,7 +104,7 @@
 					element-loading-text="拼命加载中"
 					element-loading-background="rgba(236, 245, 255, 0.8)"
 					stripe
-					style="width: 99%; min-height: 100px; color: #000 !important;">
+					style="width: 100%; min-height: 100px; color: #000 !important;">
 				<el-table-column
 						prop="gift_name"
 						label="礼品名称">
@@ -139,7 +147,10 @@
 					trade_id: '',
 					receiver_mobile: '',
 					receiver_name: '',
-					date: [new Date(new Date().getTime() - 7 * 24 * 3600 * 1000), new Date()],
+					date: [
+						new Date(new Date().getTime() - 7 * 24 * 3600 * 1000),
+						new Date(new Date().getTime() - 1 * 24 * 3600 * 1000)
+					],
 					status: ''
 				},
 				statusList: [
@@ -161,6 +172,7 @@
 					}
 				],
 				tableData: [],
+				exportData: [],
 				tableFields: {
 					'礼品名称': 'gift_name',
 					'收件人': 'receiver_name',
@@ -229,21 +241,34 @@
 			},
 			transferData(inputData) {
 				this.tableData = [];
-				inputData.map((row) => {
+
+				for (let row of inputData) {
+					if (row.status !== -1) {
+						this.exportData.push({
+							gift_name: row.gift_name,
+							receiver_name: row.receiver_name,
+							receiver_mobile: row.receiver_mobile.replace(/<[^>]+>/g, ""),
+							create_time: this.dataTransform(row.create_time),
+							trade_num: row.trade_num,
+							receiver_address: row.receiver_address,
+							status: this.statusFilter(row.status),
+						});
+					}
+
 					this.tableData.push({
 						gift_name: row.gift_name,
 						receiver_name: row.receiver_name,
-						receiver_mobile: row.receiver_mobile.replace(/<[^>]+>/g,""),
+						receiver_mobile: row.receiver_mobile.replace(/<[^>]+>/g, ""),
 						create_time: this.dataTransform(row.create_time),
 						trade_num: row.trade_num,
 						receiver_address: row.receiver_address,
 						status: this.statusFilter(row.status),
 					});
-				});
+				}
 			},
 			dataTransform(val) {
-				val = val.replace(/-/g,"/");
-				val = val.replace(/(\.\d+)?/g,"");
+				val = val.replace(/-/g, "/");
+				val = val.replace(/(\.\d+)?/g, "");
 				return val.split(' ')[0];
 			},
 			statusFilter(val) {
@@ -259,7 +284,7 @@
 		},
 		computed: {
 			JSESSIONID() {
-				return this.$store.getters.getJSESSIONID;
+				return this.$cookies.get('JSESSIONID');
 			}
 		},
 		mounted() {
@@ -271,6 +296,36 @@
 <style scoped>
 	* {
 		/*font-size: 1rem !important;*/
+	}
+
+	.logo {
+		width: 100%;
+		height: 5rem;
+		background-color: rgb(221, 37, 37);
+	}
+
+	.animate {
+		animation: showin 1s;
+	}
+
+	@keyframes showin {
+		from {
+			margin-left: 15rem;
+			opacity: 0;
+		}
+
+		to {
+			margin-left: 0;
+			opacity: 1;
+		}
+	}
+
+	.logo-title {
+		position: absolute;
+		color: #fff;
+		font-size: 1.6rem;
+		font-weight: bold;
+		line-height: 5rem;
 	}
 
 	.breadcrumb {

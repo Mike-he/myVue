@@ -50,7 +50,7 @@
 		},
 		methods: {
 			storeJSESSIONID(val) {
-				this.$store.dispatch('setJSESSIONID', val);
+				this.$cookies.set('JSESSIONID', val);
 
 				setTimeout(() => {
 					this.$router.push('/order');
