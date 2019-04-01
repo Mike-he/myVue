@@ -1,19 +1,18 @@
 <template>
 	<div class="login-box">
 		<div class="logo">
-			<img :src="require('@img/cup.png')" alt="">
+			<div class="logo-img">
+				<img :src="require('@img/cup.png')" alt="">
+			</div>
 			<div class="logo-title">你的可乐</div>
 		</div>
 		<div class="login-content">
 			<div class="box">
 				<div class="box-row">
-					<div class="box-cell box-cell-title">
-						<span class="j-label">JsessionID</span>
-					</div>
 					<div class="box-cell">
 						<el-input
 								class="j-input"
-								placeholder=""
+								placeholder="JSESSIONID"
 								autofocus=true
 								spellcheck=false
 								@keyup.enter.native="submit"
@@ -84,62 +83,66 @@
 
 <style>
 	.login-box {
-		width: 100%;
-		justify-content: center;
-		margin-top: 18rem;
+		width: 46rem;
+		height: 26rem;
+		border-radius: 1rem;
+		position: absolute;
+		text-align: center;
+		left: 50%;
+		top: 50%;
+		margin-left: -24rem;
+		margin-top: -15rem;
+		background-color: #fff;
+		transition: all .3s;
+	}
+
+	.login-box:hover {
+		box-shadow: 2px 2px 6px #C0C4CC;
 	}
 
 	.logo {
-		display: flex;
 		width: 100%;
-		justify-content: center;
+		height: 50%;
+		position: relative;
 	}
 
 	.logo-title {
 		color: #409EFF;
 		font-size: 2.5rem;
-		line-height: 8.5rem;
-		margin-left: 1rem;
+		line-height: 3rem;
 	}
 
 	@keyframes show {
 		from {
-			margin-right: 10rem;
+			padding-top: 1rem;
 			opacity: 0;
 		}
 		to {
-			margin-right: 0;
+			padding-top: 2.5rem;
 			opacity: 1;
 		}
 	}
 
-	.logo img {
-		max-width: 100%;
-		height: 100%;
+	.logo-img {
+		width: 8rem;
+		height: 8rem;
+		margin: 0 auto;
+		padding-top: 2.5rem;
 		animation: show 1s ease;
 	}
 
 	.login-content {
-		display: flex;
-		margin-top: 7rem;
 		width: 100%;
-		height: 10rem;
-		justify-content: center;
-		align-items: center;
+		height: 50%;
 	}
 
 	.login-content .box {
 		display: table;
 		align-items: center;
 		padding: 2rem;
-		background-color: #fff;
 		height: 100%;
-		width: 50rem;
-		transition: all .3s;
-	}
-
-	.login-content .box:hover {
-		box-shadow: 2px 2px 6px #C0C4CC;
+		width: 30rem;
+		margin: 0 auto;
 	}
 
 	.box-row {
@@ -149,17 +152,6 @@
 	.box-cell {
 		display: table-cell;
 		padding: .8rem;
-	}
-
-	.box-cell-title {
-		width: 8rem;
-	}
-
-	.j-label {
-		float: right;
-		line-height: 1rem;
-		color: #606266;
-		font-size: 1.3rem;
 	}
 
 	.j-input {
