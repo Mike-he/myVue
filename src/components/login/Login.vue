@@ -22,11 +22,13 @@
 					</div>
 				</div>
 				<div class="box-row">
-					<a href="http://m.coke-food.com/cola-gift-exchange-manager/login" target="_blank">
+					<div class="box-cell">
+						<a href="http://m.coke-food.com/cola-gift-exchange-manager/login" target="_blank">
 							<span>
 								去登录新品英雄会后台
 							</span>
-					</a>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -138,7 +140,7 @@
 	.login-content .box {
 		display: table;
 		align-items: center;
-		padding: 2rem;
+		padding: .5rem;
 		height: 100%;
 		width: 30rem;
 		margin: 0 auto;
