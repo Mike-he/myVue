@@ -19,15 +19,14 @@
 								v-model="JSESSIONID"
 						>
 						</el-input>
-						<el-button
-								type="text"
-								class="login-button"
-								:loading="buttonLoading"
-								v-show="buttonLoading"
-						>
-							验证中...
-						</el-button>
 					</div>
+				</div>
+				<div class="box-row">
+					<a href="http://m.coke-food.com/cola-gift-exchange-manager/login" target="_blank">
+							<span>
+								去登录新品英雄会后台
+							</span>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -91,7 +90,7 @@
 		left: 50%;
 		top: 50%;
 		margin-left: -24rem;
-		margin-top: -15rem;
+		margin-top: -18rem;
 		background-color: #fff;
 		transition: all .3s;
 	}
