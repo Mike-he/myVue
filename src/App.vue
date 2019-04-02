@@ -28,10 +28,8 @@
 <style>
 	html {
 		font-size: 12px;
-		font-family: -apple-system-font, BlinkMacSystemFont, "Helvetica Neue",
-		"PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei",
-		Arial, sans-serif;
-		background-color: rgb(239,239,239);
+		font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+		background-color: rgb(247,247,247);
 	}
 	.layout-header {
 		background-color: rgb(221, 37, 37);

@@ -1,5 +1,5 @@
 <template>
-	<div class="login-box">
+	<el-card shadow="hover" class="login-box">
 		<div class="logo">
 			<div class="logo-img">
 				<img :src="require('@img/cup.png')" alt="">
@@ -32,7 +32,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</el-card>
 </template>
 
 <script>
