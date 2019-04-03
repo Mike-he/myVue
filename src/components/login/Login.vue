@@ -2,7 +2,7 @@
 	<el-card shadow="hover" class="login-box">
 		<div class="logo">
 			<div class="logo-img">
-				<img :src="require('@img/cup.png')" alt="">
+				<img src="~img/cup.png" alt="">
 			</div>
 			<div class="logo-title">你的可乐</div>
 		</div>

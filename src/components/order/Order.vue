@@ -2,7 +2,7 @@
 	<div>
 		<div class="logo">
 			<div class="animate">
-				<img :src="require('@img/logo.png')" alt="">
+				<img src="~img/logo.png" alt="">
 				<span class="logo-title">可口可乐在上海 新品英雄会礼品兑换</span>
 			</div>
 		</div>
