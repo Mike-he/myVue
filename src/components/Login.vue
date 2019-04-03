@@ -86,7 +86,11 @@
 						.then((res) => {
 							if (!res.data.code) {
 								this.storeJSESSIONID(res.data.data.JSESSIONID);
-								this.$message.success('验证成功！');
+								this.$message({
+									type: 'success',
+									message: '验证成功！',
+									center: true
+								});
 							}
 						})
 			}
