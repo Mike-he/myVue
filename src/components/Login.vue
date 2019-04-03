@@ -15,6 +15,7 @@
 								placeholder="Username"
 								autofocus=true
 								spellcheck=false
+								size="medium"
 								@keyup.enter.native="submit"
 								v-model="username"
 						>
@@ -27,6 +28,7 @@
 								class="j-input"
 								placeholder="Password"
 								spellcheck=false
+								size="medium"
 								@keyup.enter.native="submit"
 								v-model="password"
 						>
@@ -97,7 +99,7 @@
 <style>
 	.login-box {
 		width: 46rem;
-		height: 32rem;
+		height: 30rem;
 		border-radius: 1rem;
 		position: absolute;
 		text-align: center;
@@ -147,6 +149,7 @@
 	.login-content {
 		width: 100%;
 		height: 50%;
+		padding-top: 1rem;
 	}
 
 	.login-content .box {
