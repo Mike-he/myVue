@@ -8,7 +8,7 @@ export default new Router({
     {
       path: '/',
       name: 'login',
-      component: () => import('../components/login/Login')
+      component: () => import('../components/Login')
     },
     {
       path: '/order',
