@@ -37,7 +37,12 @@
         </div>
         <div class="box-row">
           <div class="box-cell">
-            <el-button type="primary">登&nbsp;&nbsp;&nbsp;&nbsp; 录</el-button>
+            <el-button
+                type="primary"
+                @click="submit"
+            >
+              登&nbsp;&nbsp;&nbsp;&nbsp; 录
+            </el-button>
           </div>
         </div>
         <div class="box-row">

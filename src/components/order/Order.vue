@@ -264,6 +264,7 @@
           });
       },
       transferData(inputData) {
+        this.exportData = [];
         this.tableDataAll = [];
 
         for (let row of inputData) {
