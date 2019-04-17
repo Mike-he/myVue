@@ -104,6 +104,9 @@
       }
     },
     mounted() {
+      try{
+        document.body.removeChild(document.getElementById('appLoading'));
+      } catch (e) {}
     }
   }
 </script>
