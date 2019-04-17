@@ -29,6 +29,7 @@
                 placeholder="Password"
                 spellcheck=false
                 size="medium"
+                type="password"
                 @keyup.enter.native="submit"
                 v-model="password"
             >
@@ -64,23 +65,20 @@
     name: 'Login',
     data() {
       return {
-        username: '',
-        password: '',
+        username: this.$cookies.get('username'),
+        password: this.$cookies.get('password'),
         buttonLoading: false,
       }
-    },
-    watch: {
-      JSESSIONID(val) {
-        this.submit();
-      },
     },
     methods: {
       storeJSESSIONID(val) {
         this.$cookies.set('JSESSIONID', val);
+        this.$cookies.set('username', this.username);
+        this.$cookies.set('password', this.password);
 
         setTimeout(() => {
           this.$router.push('/order');
-        }, 1000);
+        }, 500);
       },
       submit() {
         this.buttonLoading = true;
@@ -186,9 +184,5 @@
 
   .j-input {
     width: 28rem;
-  }
-
-  .login-button {
-    width: 7rem;
   }
 </style>
