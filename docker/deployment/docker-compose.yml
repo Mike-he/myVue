@@ -4,7 +4,7 @@ services:
   cola-vue:
     image: mikehe/cola-vue:master
     ports:
-      - 8002:80
+      - 80:80
     deploy:
       replicas: 3
       update_config:
