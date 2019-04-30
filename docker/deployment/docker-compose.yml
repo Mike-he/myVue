@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  cola-vue:
+    image: mikehe/cola-vue:master
+    ports:
+      - 8002:80
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    networks:
+      - default
+networks:
+  default:
+    external:
+      name: local_service

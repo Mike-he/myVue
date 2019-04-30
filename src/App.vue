@@ -1,13 +1,5 @@
 <template>
 	<div>
-		<div class="layout-header">
-			<div>
-				<!--<img :src="require('@img/logo.png')" alt="">-->
-			</div>
-			<div class="layout-header-title">
-				<!--<span>可口可乐在上海 新品英雄会礼品兑换</span>-->
-			</div>
-		</div>
 		<div>
 			<router-view/>
 		</div>
@@ -21,6 +13,9 @@
 		name: "App",
 		mounted() {
 			// wxConfig();
+			try{
+				document.body.removeChild(document.getElementById('appLoading'));
+			} catch (e) {}
 		}
 	};
 </script>
