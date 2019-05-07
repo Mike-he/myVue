@@ -4,7 +4,7 @@
       <div class="logo-img">
         <img src="~img/cup.png" alt="">
       </div>
-      <div class="logo-title">你的可乐</div>
+      <div class="logo-title">Your Latte</div>
     </div>
     <div class="login-content">
       <div class="box">
@@ -12,7 +12,7 @@
           <div class="box-cell">
             <el-input
                 class="j-input"
-                placeholder="Username"
+                placeholder="用户名"
                 autofocus=true
                 spellcheck=false
                 size="medium"
@@ -26,7 +26,7 @@
           <div class="box-cell">
             <el-input
                 class="j-input"
-                placeholder="Password"
+                placeholder="密码"
                 spellcheck=false
                 size="medium"
                 type="password"
@@ -134,7 +134,7 @@
   }
 
   .logo-title {
-    color: #409EFF;
+    color: #67C23A;
     font-size: 2.5rem;
     line-height: 3rem;
   }
