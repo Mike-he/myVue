@@ -50,7 +50,7 @@
           <div class="box-cell">
             <a href="http://m.coke-food.com/cola-gift-exchange-manager/login" target="_blank">
 							<span>
-								或前往新品英雄会后台
+								前往新品英雄会后台
 							</span>
             </a>
           </div>
