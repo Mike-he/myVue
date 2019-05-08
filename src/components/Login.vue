@@ -13,7 +13,6 @@
             <el-input
                 class="j-input"
                 placeholder="用户名"
-                autofocus=true
                 spellcheck=false
                 size="medium"
                 @keyup.enter.native="submit"
@@ -134,7 +133,7 @@
   }
 
   .logo-title {
-    color: #67C23A;
+    color: rgb(186, 186, 186);
     font-size: 2.5rem;
     line-height: 3rem;
   }
