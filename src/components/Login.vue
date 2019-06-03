@@ -1,62 +1,31 @@
 <template>
-  <el-card shadow="hover" class="login-box">
-    <div class="logo">
-      <div class="logo-img">
-        <img src="~img/cup.png" alt="">
-      </div>
-      <div class="logo-title">Your Latte</div>
-    </div>
-    <div class="login-content">
-      <div class="box">
-        <div class="box-row">
-          <div class="box-cell">
-            <el-input
-                class="j-input"
-                placeholder="用户名"
-                spellcheck=false
-                size="medium"
-                @keyup.enter.native="submit"
-                v-model="username"
-            >
-            </el-input>
-          </div>
-        </div>
-        <div class="box-row">
-          <div class="box-cell">
-            <el-input
-                class="j-input"
-                placeholder="密码"
-                spellcheck=false
-                size="medium"
-                type="password"
-                @keyup.enter.native="submit"
-                v-model="password"
-            >
-            </el-input>
-          </div>
-        </div>
-        <div class="box-row">
-          <div class="box-cell">
-            <el-button
-                type="primary"
-                @click="submit"
-            >
-              登&nbsp;&nbsp;&nbsp;&nbsp; 录
-            </el-button>
-          </div>
-        </div>
-        <div class="box-row">
-          <div class="box-cell">
-            <a href="http://m.coke-food.com/cola-gift-exchange-manager/login" target="_blank">
-							<span>
-								前往新品英雄会后台
-							</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </el-card>
+	<div class="root">
+		<div class="logo-container">
+			<div class="logo-title">
+				<img src="../../static/img/logo-new.png">&nbsp;
+        Foodie's garden
+			</div>
+			<div class="logo-input">
+				<input
+          type="text"
+          placeholder="Username"
+          @keyup.enter.native="submit"
+          v-model="username"
+        >
+				<input
+          type="password"
+          placeholder="Password"
+          @keyup.enter.native="submit"
+          v-model="password"
+        >
+				<button
+          type="submit"
+          class="input-submit"
+          @click="submit"
+        >Submit</button>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -108,80 +77,69 @@
 </script>
 
 <style>
-  .login-box {
-    width: 46rem;
-    height: 35rem;
-    border-radius: 1rem;
-    position: absolute;
-    text-align: center;
-    left: 50%;
-    top: 50%;
-    margin-left: -24rem;
-    margin-top: -18rem;
-    background-color: #fff;
-    transition: all .3s;
-  }
-
-  .login-box:hover {
-    box-shadow: 2px 2px 6px #C0C4CC;
-  }
-
-  .logo {
-    width: 100%;
-    height: 50%;
-    position: relative;
-  }
-
-  .logo-title {
-    color: rgb(186, 186, 186);
-    font-size: 2.5rem;
-    line-height: 3rem;
-  }
-
-  @keyframes show {
-    from {
-      padding-top: 1rem;
-      opacity: 0;
-    }
-    to {
-      padding-top: 2.5rem;
-      opacity: 1;
-    }
-  }
-
-  .logo-img {
-    width: 8rem;
-    height: 8rem;
-    margin: 0 auto;
-    padding-top: 2.5rem;
-    animation: show 1s ease;
-  }
-
-  .login-content {
-    width: 100%;
-    height: 50%;
-    padding-top: 1rem;
-  }
-
-  .login-content .box {
-    display: table;
-    align-items: center;
-    padding: .5rem;
-    height: 100%;
-    width: 30rem;
-    margin: 0 auto;
-  }
-
-  .box-row {
-    display: table-row;
-  }
-
-  .box-cell {
-    display: table-cell;
-    padding: .8rem;
-  }
-
-  .j-input {
-    width: 28rem;
-  }
+@import url('https://fonts.font.im/css?family=Rancho');
+.root {
+	display: grid;
+	justify-items: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	background-image: url("../../static/img/bg.jpg");
+}
+.logo-container {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(2, 15vh);
+	justify-items: center;
+	width: 50vw;
+	margin-top: -8vh;
+}
+.logo-title {
+	font-family: 'Rancho', cursive;
+	font-size: 7rem;
+	color: rgb(133, 189, 3);
+	align-self: center;
+}
+.logo-input input{
+	display: block;
+	height: 3rem;
+	width: 18rem;
+	margin-top: .5rem;
+	box-sizing: border-box;
+	border: 0;
+	border-bottom: 2px solid rgb(133, 189, 3, .2);
+	outline: none;
+	text-align: center;
+	background-color: transparent;
+	color: rgb(133, 189, 3);
+	font-size: 1.4rem;
+	transition: all .4s;
+}
+.logo-input input:focus {
+	border-bottom: 2px solid rgb(133, 189, 3);
+}
+.logo-input input::-webkit-input-placeholder {
+	color: #e3e3e3;
+}
+.logo-input > .input-submit {
+	display: block;
+	height: 2.8rem;
+	width: 18rem;
+	border: none;
+	color: #fff;
+	text-align: center;
+	margin-top: 1.5rem;
+	font-size: 1.4rem;
+	background-color: rgb(133, 189, 3, .2);
+	transition: all .4s;
+	border-radius: .4rem;
+	outline: none;
+}
+.logo-input > .input-submit:hover {
+	background-color: rgb(133, 189, 3, .7);
+	cursor: pointer;
+}
+.logo-input > .input-submit:active {
+	background-color: rgb(133, 189, 3);
+}
 </style>
