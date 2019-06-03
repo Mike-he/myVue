@@ -2,7 +2,7 @@
 	<div class="root">
 		<div class="logo-container">
 			<div class="logo-title">
-				<img src="../../static/img/logo-new.png">&nbsp;
+				<img src="~img/logo-new.png">&nbsp;
         Foodie's garden
 			</div>
 			<div class="logo-input">
@@ -84,7 +84,7 @@
 	align-items: center;
 	width: 100vw;
 	height: 100vh;
-	background-image: url("../../static/img/bg.jpg");
+	background-image: url(~img/bg.jpg);
 }
 .logo-container {
 	display: grid;
