@@ -1,20 +1,22 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import router from './router'
-import axios from 'axios'
-import 'normalize.css'
+import Vue from 'vue';
+import App from './App';
+import router from './router';
+import axios from 'axios';
+import 'normalize.css';
 import ElementUI from 'element-ui';
-import JsonExcel from 'vue-json-excel'
+import JsonExcel from 'vue-json-excel';
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/styles/main.css';
 import Box from '@/components/basic-components/Box';
-import VueCookies from 'vue-cookies'
-import store from './store'
+import VueCookies from 'vue-cookies';
+import store from './store';
+import VueAnime from 'vue-animejs';
 
 Vue.use(VueCookies);
 Vue.use(ElementUI);
+Vue.use(VueAnime);
 
 Vue.component('downloadExcel', JsonExcel);
 Vue.component('box', Box);

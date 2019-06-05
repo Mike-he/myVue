@@ -321,15 +321,15 @@
     },
     mounted() {
       this.getList();
+      this.$anime({
+        targets: '.animate',
+        translateX: -300
+      });
     }
   }
 </script>
 
 <style scoped>
-  * {
-    /*font-size: 1rem !important;*/
-  }
-
   .logo {
     width: 100%;
     height: 5rem;
@@ -337,25 +337,14 @@
   }
 
   .animate {
-    animation: showin 1s;
-  }
-
-  @keyframes showin {
-    from {
-      margin-left: 15rem;
-      opacity: 0;
-    }
-
-    to {
-      margin-left: 0;
-      opacity: 1;
-    }
+    margin-left: 330px;
   }
 
   .logo-title {
     position: absolute;
     color: #fff;
     font-size: 1.6rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bold;
     line-height: 5rem;
   }
