@@ -2,7 +2,8 @@
   <div class="root">
     <div class="logo-container">
       <div class="logo-title" id="logoTitle">
-        <img src="~img/logo-new.png">&nbsp;Foodie's garden
+        <div><img src="~img/logo-new.png"></div>
+        <div class="logo-text"><img src="~img/title.svg"></div>
       </div>
       <div class="logo-input" id="input">
         <input type="text" placeholder="Username" @keyup.enter.native="submit" v-model="username">
@@ -104,10 +105,14 @@ export default {
   margin-top: 0vh;
 }
 .logo-title {
+  display: flex;
   font-family: "Rancho", cursive;
   font-size: 7rem;
   color: rgb(133, 189, 3);
   align-self: center;
+}
+.logo-text {
+  margin-left: 2rem;
 }
 .logo-input input {
   display: block;
