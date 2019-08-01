@@ -87,7 +87,6 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.font.im/css?family=Rancho");
 .root {
   display: grid;
   justify-items: center;
